@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat Listener Sample</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://sdk-cdn.mypurecloud.com/javascript/62.0.0/purecloud-platform-client-v2.min.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <div class="agent-assistant">
+      <div class="container acd-chat-conversation chat-conversation">
+        <div class="field acd-message-pane message-pane" id="agent-assist"></div>
+        <div id="canned-response-container">
+          <div id="search-container">
+            <label class="search-label">Find response</label>
+            <input type="text" id="find-response" placeholder="Find response" class="form-control">
+            <button id="find-response-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <div id="search-result-container">
+            <label id="toggle-search"><< Back to Canned Responses</label>
+          </div>
+          <div id="libraries-container" style="display: block;"></div>
+        </div>
+        <div class="chat-box acd-chat-reply">
+          <div class="top-chat-box">
+            <label id="toggle-iframe">Open Canned Responses</label>
+          </div>
+          <form id="chat-form" name="message">
+            <textarea id="message-textarea" class="message-input form-control acd-chat-reply-textarea chat-text" spellcheck="true"></textarea>
+            <button id="btn-send-message" value="Translate and Send" type="submit" class="sr-only"></button>
+          </form>
+          <div class="bottom-chat-box"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

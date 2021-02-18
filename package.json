@@ -1,0 +1,27 @@
+{
+  "name": "chat-translator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run-local.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GenesysAppFoundry/chat-translator-blueprint.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GenesysAppFoundry/chat-translator-blueprint/issues"
+  },
+  "homepage": "https://github.com/GenesysAppFoundry/chat-translator-blueprint#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-server": "^0.12.3",
+    "https-server": "^0.1.2"
+  }
+}
