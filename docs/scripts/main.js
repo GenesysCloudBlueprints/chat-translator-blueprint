@@ -43,7 +43,7 @@ let onMessage = (data) => {
             let purpose = participant.purpose;
 
             // Wait for translate to finish before calling addChatMessage
-            translate.translateText(translateKey, message, genesysCloudLanguage, function(translatedData) {
+            translate.translateText(message, genesysCloudLanguage, function(translatedData) {
                 view.addChatMessage(name, translatedData.translated_text, purpose);
                 translationData = translatedData;
             });
@@ -74,7 +74,7 @@ function sendChat(){
     }
 
     // Translate text to customer's local language
-    translate.translateText(translateKey, message, sourceLang, function(translatedData) {
+    translate.translateText(message, sourceLang, function(translatedData) {
         // Wait for translate to finish before calling sendMessage
         sendMessage(translatedData.translated_text, currentConversationId, communicationId);
     });
@@ -120,7 +120,7 @@ function showChatTranscript(conversationId){
                             .purpose;
 
                 // Wait for translate to finish before calling addChatMessage
-                translate.translateText(translateKey, message, genesysCloudLanguage, function(translatedData) {
+                translate.translateText(message, genesysCloudLanguage, function(translatedData) {
                     view.addChatMessage(name, translatedData.translated_text, purpose);
                     translationData = translatedData;
                 });
@@ -345,10 +345,6 @@ client.loginImplicitGrant(
     currentConversationId = stateData.conversationId;
     genesysCloudLanguage = stateData.language;
     
-    return translate.getKey(client.authData.accessToken);
-}).then(_key => {
-    translateKey = _key;
-
     // Get Details of current User
     return usersApi.getUsersMe();
 }).then(userMe => {

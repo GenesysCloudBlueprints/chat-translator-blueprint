@@ -11,8 +11,5 @@ export default {
         region: 'mypurecloud.com'
     },
 
-    awsEndpoints: {
-        getKey: '',
-        translateText: ''
-    }
+    translateServiceURI: 'https://localhost/translate'
 }

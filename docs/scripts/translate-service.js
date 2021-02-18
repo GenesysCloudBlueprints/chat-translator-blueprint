@@ -23,7 +23,7 @@ const languageCodeMapping = {
 }
 
 export default {
-    translateText(key, text, language, callback){
+    translateText(text, language, callback){
         let language_code = languageCodeMapping[language] ? 
                     languageCodeMapping[language] : language;
 
@@ -33,7 +33,7 @@ export default {
             target_language: language_code
         }
 
-        fetch(config.awsEndpoints.translateText + `${key}`,
+        fetch(config.translateServiceURI,
             {
                 method: 'POST',
                 headers: {
@@ -47,25 +47,6 @@ export default {
             console.log(JSON.stringify(translationData));
 
             callback(translationData);
-        })
-        .catch(e => console.error(e));
-    },
-
-    getKey(token){
-        return fetch(config.awsEndpoints.getKey,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    gcloud_token: token
-                })
-            }
-        )
-        .then(response => response.json())
-        .then(data => {
-            return data.translate_key;
         })
         .catch(e => console.error(e));
     }
