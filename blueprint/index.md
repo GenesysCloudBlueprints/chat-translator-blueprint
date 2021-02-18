@@ -78,11 +78,9 @@ The Chat Translator integration has the following stages:
    
 4. Click the **Configuration** tab. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, including the https: at the beginning of the URL.
    
-   Use the GitHub URL to run the hosted repo or use the localhost URL to test on your local computer.
+   The pcConversationId URL parameter is used to determine the conversation interaction and pcLangTag is used to determine the agent's language in the Chat Translator solution.
 
-   <pre class="language-nohighlight"><code class="language-nohighlight">https://genesysappfoundry.github.io/chat-translator-blueprint/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;&environment=&#123;&#123;pcEnvironment&#125&#125;</code></pre>
-
-   <pre class="language-nohighlight"><code class="language-nohighlight">https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;</code></pre>
+   <pre class="language-nohighlight"><code class="language-nohighlight">https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;</code></pre>
 
    **(Optional)** Select a group for filtering user acces to the widget.
 

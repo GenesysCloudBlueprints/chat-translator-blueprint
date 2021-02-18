@@ -325,14 +325,11 @@ const urlParams = new URLSearchParams(window.location.search);
 currentConversationId = urlParams.get('conversationid');
 genesysCloudLanguage = urlParams.get('language');
 
-const redirectUri = (new URL (window.location.href)).hostname == 'localhost' ?
-                config.testUri : config.prodUri;
-
 client.setPersistSettings(true, 'chat-translator');
 client.setEnvironment(config.genesysCloud.region);
 client.loginImplicitGrant(
     config.clientID,
-    redirectUri,
+    config.redirectUri,
     { state: JSON.stringify({
         conversationId: currentConversationId,
         language: genesysCloudLanguage

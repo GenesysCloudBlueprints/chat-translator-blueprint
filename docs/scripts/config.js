@@ -1,9 +1,8 @@
 export default {
     // Token Implicit Grant Client ID
-    clientID: '',
+    clientID: process.env.CLIENT_ID,
 
-    testUri: 'https://localhost/',
-    prodUri:  'https://genesysappfoundry.github.io/chat-translator-blueprint/',
+    redirectUri: 'https://localhost/',
 
     genesysCloud: {
         // Genesys Cloud region
