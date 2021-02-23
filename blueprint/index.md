@@ -60,10 +60,12 @@ The Chat Translator integration has the following stages:
 1. Login to your Genesys Cloud organization and create a new OAuth API (Implicit Grant(Browser)). [Create an OAuth Client.](https://help.mypurecloud.com/articles/create-an-oauth-client/)
 2. Modify [config.js](https://github.com/GenesysAppFoundry/chat-translator-blueprint/blob/main/docs/scripts/config.js) from the blueprint and enter the Client ID and region (i.e. mypurecloud.ie, mypurecloud.au, etc.) for Genesys Cloud.
 
-### Create or use existing AWS Translate endpoints
-1. Create or open an existing AWS....
-2. Next Steps...
-3. Modify [config.js](https://github.com/GenesysAppFoundry/chat-translator-blueprint/blob/main/docs/scripts/config.js) from the blueprint and enter the endpoints to translate text and get token.
+### Setting up AWS Translate
+1. Create an IAM user for the application. [IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)
+2. Add a policy to the IAM granting full access to the Translate service. [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html)
+3. Create an access key for the IAM user. [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
+4. Take note of the access key and secret.
+5. Create an .env file in the directory folder and provide values to the following variables: AWS_REGION, AWS_ACCESS_KEY_ID, and AWS_SECRET_ACCESS_KEY. You can also take the sample.env file and rename it to ".env" after filling in the required details.
 
 ### Install and activate the Chat Translator integration app on Genesys Cloud
 
