@@ -19,18 +19,19 @@ Genesys Cloud uses the Interaction Widget to translate and send messages to the 
 * **Genesys Cloud** - The Genesys cloud-based contact center platform. Genesys Cloud is the platform for the Chat Translator solution.
 * **Genesys AppFoundry** - The Genesys AppFoundry is an app marketplace for solutions that run on the Genesys Cloud platform. You get the Chat Translator integration used in the solution from the Genesys AppFoundry.
 * **Interaction Widget Integration** - This integration type enables web apps to be embedded in an iframe within Genesys Cloud. Each iframe is unique to an interaction and will only show when the interaction is being offered or received by an agent. The client app for this blueprint will be embedded via this integration type.
-* **AWS Cloud** - Amazon Web Services (AWS) is Amazon's cloud platform. AWS is the platform for Genesys Cloud and the Chat Translator solution.
+* **AWS Identity and Access Management (IAM)** - An AWS Identity and Access Management (IAM) user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. The Chat Translator uses AWS IAM to access Amazon Translate and AWS SDK.
 * **Amazon Translate** - Amazon Translate is a translation service that delivers fast, high-quality, and affordable language translation. Amazon Translate is the translate service used in the Chat Translator solution.
 
 ### Software Development Kit (SDK)
 * **Genesys Cloud Platform API SDK** - This SDK is used for the initial interaction of agent and customer over chat.
+* **Amazon Web Services SDK** - This SDK enables developers to build libraries and applications that use AWS services. You can use the JavaScript API in the browser and inside Node.js applications on the server.
 
 ## Requirements
 
 ### Specialized knowledge
 Implementing this solution requires experience in several areas or a willingness to learn:
 * Administrator-level knowledge of Genesys Cloud and the Genesys AppFoundry
-* AWS Cloud Practitioner-level knowledge of AWS Translate
+* AWS Cloud Practitioner-level knowledge of AWS IAM, Translate and AWS SDK
 * Genesys Cloud Platform API knowledge
 
 ### Genesys Cloud account requirements
@@ -41,13 +42,14 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 ### AWS account requirements
 The solutions engineer requires an AWS account and administrator level credentials that allow:
 * Working with AWS Translate
+* Working with IAM User
 
 ## Run Locally
 
 The Chat Translator integration has the following stages:
 * Download the repository containing the project files
 * Create a Token Implicit OAuth Grant for Genesys Cloud
-* Create or use existing AWS Translate endpoints
+* Setting up AWS Translate
 * Install and activate the Chat Translator integration app on Genesys Cloud
 * Host and run the NodeJS app server
 * Create a Genesys web chat widget and test the Chat Translator solution
