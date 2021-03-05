@@ -266,7 +266,7 @@ function doResponseSubstitution(text, responseId){
 * the AGENT_ALIAS variable in the canned response.
 */
 function getAgentAlias(){
-    return fetch(`https://api.mypurecloud.com/api/v2/users/${userId}/profile?fl=*`, {
+    return fetch(`https://api.${config.genesysCloud.region}/api/v2/users/${userId}/profile?fl=*`, {
         method: 'GET',
         headers: {
             'Authorization': `bearer ${client.authData.accessToken}`
