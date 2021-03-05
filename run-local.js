@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs');
 const express = require('express');
 const { Translate } = require('@aws-sdk/client-translate');
-require('dotenv').config()
+require('dotenv').config();
 
 // Configure the AWS Translate client
 const translateService = new Translate({ 

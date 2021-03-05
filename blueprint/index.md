@@ -114,7 +114,7 @@ The Chat Translator integration has the following stages:
         "256x256": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear%20256x256.png"
     },
      "monochromicIcon": {
-       "vector": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear.svg"
+       "vector": "https://github.com/GenesysAppFoundry/chat-translator-blueprint/raw/main/blueprint/images/ear.svg"
      }
    }
    ```
@@ -122,11 +122,25 @@ The Chat Translator integration has the following stages:
 6. **Save** and **Activate** the integration.
 
 ### Host and run the NodeJS app server
-1. Open a terminal in the project directory and install the dependencies in the local node-modules folder.
+1. Check if you are running on the same Node version or higher. This sample runs on Node.js v14.15.4.
+   ```
+   node --version
+   ```
+
+   To install this version, use the **nvm** command with the specific Node.js version.
+   ```
+   nvm install 14.15.4
+   ```
+
+   To install the latest version of Node.js, use this:
+   ```
+   npm install -g n latest
+   ```
+2. Open a terminal in the project directory and install the dependencies in the local node-modules folder.
    ```
    npm install
    ```
-2. Run the server by entering this in the terminal
+3. Run the server by entering this in the terminal
    ```
    node run-local.js
    ```
