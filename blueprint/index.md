@@ -100,8 +100,8 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 
    The `pcConversationId` parameter determines the conversation interaction. The `pcLangTag` parameter determines the agent's language in the Chat Translator solution.
 
-6. (Optional) To limit access to specific groups of agents, in **Group Filtering**, select the groups that can use the widget.
-7. (Optional) To limit access to specific queues, click **Select Queues** and select the queues that can use the widget.
+6. To limit access to specific groups of agents, in **Group Filtering**, select the groups that can use the widget.
+7. To limit access to specific queues, click **Select Queues** and select the queues that can use the widget.
 8. In the **Communication Type Filtering** box, type **chat**.  
 
    ![Interaction configuration](images/interaction-config.png "Interaction configuration")
@@ -158,15 +158,17 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 3. Go to the [Chat Configuration page in the Genesys Cloud Developer Center](https://developer.mypurecloud.com/developer-tools/#/webchat "Opens the Chat Configuration page in the Genesys Cloud Developer Center").
 4. Click **Populate Fields**.
 5. To start a chat as a customer, click **Start Chat**.
-6. To answer the chat as an agent, in your Genesys Cloud organization change your status to **On Queue** and then answer the incoming interaction. The **Chat Translator** button appears in the agent's toolbar.
+6. To answer the chat as an agent, in your Genesys Cloud organization change your status to **On Queue** and then answer the incoming interaction.
 ![Chat interaction](images/chat-interaction.png "Incoming chat interaction")
-7. To open the Chat Translator, click the icon. Practice sending and receiving chats in different languages. When you type a chat, the Chat Translator automatically translates it into the language that the customer is using.
+7. To open the Chat Translator, click the **Chat Translator** button, which appears in the agent's toolbar.
+8. Practice sending and receiving chats in different languages. When you type a chat, the Chat Translator automatically translates it into the language that the customer is using.
 ![Translated chat](images/chat-translate.png "Translated chat")
-8. To send a translated canned response, click **Open Canned Responses** and select a canned response.  
+9. To send a translated canned response, click **Open Canned Responses** and select a canned response.  
 ![Translated canned response](images/translate-canned-response.png "Translated canned response")
 
 ## Additional resources
 
 * [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/ Opens the Genesys Cloud Platform Client SDK page)
+* [Genesys AppFoundry](https://appfoundry.genesys.com/filter/genesyscloud “Opens the Genesys AppFoundry”)
 * [Amazon Translate](https://aws.amazon.com/translate/ “Opens Amazon Translate page”) in the AWS documentation
-* [chat-translator-blueprint](https://github.com/GenesysAppFoundry/chat-translator-blueprint “Opens the chat-translator-blueprint repository in GitHub") 
+* [chat-translator-blueprint](https://github.com/GenesysAppFoundry/chat-translator-blueprint “Opens the chat-translator-blueprint repository in GitHub")
