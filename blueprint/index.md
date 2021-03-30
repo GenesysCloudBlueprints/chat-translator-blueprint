@@ -94,9 +94,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 4. Click the **Configuration** tab.
 5. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, beginning with `https:`.
 
-   ```
-   https://localhost/?conversationid={{pcConversationId}}&language={{pcLangTag}}
-   ```
+   <pre class="language-nohighlight"><code class="language-nohighlight">https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;</code></pre>
 
    The `pcConversationId` parameter determines the conversation interaction. The `pcLangTag` parameter determines the agent's language in the Chat Translator solution.
 
@@ -151,7 +149,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 2. Open the [Web Chat developer tool](https://developer.mypurecloud.com/developer-tools/#/webchat "Opens the Web Chat developer tool").
 
    :::primary
-   **Important**: Make sure the Developer Center URL matches the region where your  Genesys Cloud organization is located. For more information, see the [Access the developer tools](https://developer.mypurecloud.com/gettingstarted/developer-tools-intro.html#accessTools "Goes to the Access the developer tools section on the Developer tools quick start page") section on the Developer tools quick start page.
+   **Important**: Make sure the Developer Center URL matches the region where your Genesys Cloud organization is located. For more information, see the [Access the developer tools](https://developer.mypurecloud.com/gettingstarted/developer-tools-intro.html#accessTools "Goes to the Access the developer tools section on the Developer tools quick start page") section on the Developer tools quick start page.
    :::
 
 3. Go to the [Chat Configuration page in the Genesys Cloud Developer Center](https://developer.mypurecloud.com/developer-tools/#/webchat "Opens the Chat Configuration page in the Genesys Cloud Developer Center").
