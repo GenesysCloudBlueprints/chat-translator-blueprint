@@ -1,102 +1,114 @@
 ---
-title: Deployment Guide for Chat Assistant on Genesys Cloud
+title: Build a chat translation assistant with the AWS Translate service
 author: agnes.corpuz
 indextype: blueprint
 icon: blueprint
 image: images/flowchart.png
 category: 6
 summary: |
-  This Genesys Blueprint provides instructions for deploying a chat translator on Genesys Cloud. The Chat Translator uses AWS translate service to determine and translate message from the customer's foreign language to the agent's configured language in Genesys Cloud. The agent will respond using their configured language and the Chat Translator translates the message back to the customer's foreign language. The Chat Translator also supports translation of canned responses configured in Genesys Cloud.
+This Genesys Cloud Developer Blueprint provides instructions for building a chat translation assistant which uses the AWS Translate service to allow customers and agents to chat in their preferred languages. The chat translation assistant automatically translates everything in the chat window in real-time, including canned responses.
 ---
 
-This Genesys Blueprint provides instructions for deploying a chat translator on Genesys Cloud. The Chat Translator uses AWS translate service to determine and translate message from the customer's foreign language to the agent's configured language in Genesys Cloud. The agent will respond using their configured language and the Chat Translator translates the message back to the customer's foreign language. The Chat Translator also supports translation of canned responses configured in Genesys Cloud.
+This Genesys Developer Cloud Blueprint provides instructions for building a chat translation assistant which uses the AWS Translate service to allow customers and agents to chat in their preferred languages. The chat translation assistant automatically translates everything in the chat window in real-time, including canned responses.
 
-Genesys Cloud uses the Interaction Widget to translate and send messages to the customer.
+![Chat translation assistant](images/flowchart.png "Chat translation assistant")
 
-![Flowchart](images/flowchart.png "Flowchart")
+[toc]
 
 ## Solution Components
-* **Genesys Cloud** - The Genesys cloud-based contact center platform. Genesys Cloud is the platform for the Chat Translator solution.
-* **Genesys AppFoundry** - The Genesys AppFoundry is an app marketplace for solutions that run on the Genesys Cloud platform. You get the Chat Translator integration used in the solution from the Genesys AppFoundry.
-* **Interaction Widget Integration** - This integration type enables web apps to be embedded in an iframe within Genesys Cloud. Each iframe is unique to an interaction and will only show when the interaction is being offered or received by an agent. The client app for this blueprint will be embedded via this integration type.
-* **AWS Identity and Access Management (IAM)** - An AWS Identity and Access Management (IAM) user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. The Chat Translator uses AWS IAM to access Amazon Translate and AWS SDK.
-* **Amazon Translate** - Amazon Translate is a translation service that delivers fast, high-quality, and affordable language translation. Amazon Translate is the translate service used in the Chat Translator solution.
 
-### Software Development Kit (SDK)
-* **Genesys Cloud Platform API SDK** - This SDK is used for the initial interaction of agent and customer over chat.
-* **Amazon Web Services SDK** - This SDK enables developers to build libraries and applications that use AWS services. You can use the JavaScript API in the browser and inside Node.js applications on the server.
+* **Genesys Cloud** - A suite of Genesys cloud services for enterprise-grade communications, collaboration, and contact center management. You deploy the Chat Translator solution in Genesys Cloud.
+* **Genesys AppFoundry** - The Genesys app marketplace for solutions that run on the Genesys Cloud platform. You download the integration used in this solution from the Genesys AppFoundry.
+* **Interaction Widget integration** - The Genesys Cloud integration that enables web apps to be embedded in an iframe within Genesys Cloud. The iframe only appears on specified interaction types and to specified agents. For this solution, Genesys Cloud uses the Interaction Widget integration to show translated chat messages to the customer.
+* **AWS IAM** - Identity and Access Management that controls access to AWS resources such as services or features. In this solution, you set the permissions to allow the Chat Translator to access Amazon Translate and the AWS SDK.
+* **Amazon Translate** - A translation service that enables cross-lingual communication between users of an application. Amazon Translate is the translation service used in the Chat Translator solution.
+
+### Software development kits (SDKs)
+
+* **Genesys Cloud Platform API SDK** -Client libraries used to simplify application integration with Genesys Cloud by handling low-level HTTP requests. This SDK is used for the initial chat interaction between agent and customer.
+* **AWS for JavaScript SDK** - This SDK enables developers to build and deploy applications that use AWS services. This solution uses the JavaScript API to enable the Chat Translator in an agent's browser and it uses the inside Node.js applications to enable the Chat Translator on the server where Genesys Cloud runs.
 
 ## Requirements
 
 ### Specialized knowledge
-Implementing this solution requires experience in several areas or a willingness to learn:
-* Administrator-level knowledge of Genesys Cloud and the Genesys AppFoundry
-* AWS Cloud Practitioner-level knowledge of AWS IAM, Translate and AWS SDK
-* Genesys Cloud Platform API knowledge
 
-### Genesys Cloud account requirements
-This solution requires a Genesys Cloud license. For more information on licensing, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the pricing article").
+* Administrator-level knowledge of Genesys Cloud
+* AWS Cloud Practitioner-level knowledge of AWS IAM, AWS Translate, and AWS for JavaScript SDK
+* Experience using the Genesys Cloud Platform API
 
-A recommended Genesys Cloud role for the solutions engineer is Master Admin. For more information on Genesys Cloud roles and permissions, see the [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article").
+### Genesys Cloud account
 
-### AWS account requirements
-The solutions engineer requires an AWS account and administrator level credentials that allow:
-* Working with AWS Translate
-* Working with IAM User
+* A Genesys Cloud license. For more information, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the Genesys Cloud pricing page") in the Genesys website.
+* The Master Admin role. For more information, see [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article") in the Genesys Cloud Resource Center.
 
-## Run Locally
+### AWS account
 
-The Chat Translator integration has the following stages:
-* Download the repository containing the project files
-* Create a Token Implicit OAuth Grant for Genesys Cloud
-* Setting up AWS Translate
-* Install and activate the Chat Translator integration app on Genesys Cloud
-* Host and run the NodeJS app server
-* Create a Genesys web chat widget and test the Chat Translator solution
+* A user account with AdministratorAccess permission and full access to the following services:
+  * IAM service
+  * Translate service
+
+## Implementation steps
+
+* [Download the repository containing the project files](#Download_the_repository_containing_the_project_files)
+* [Create a Token Implicit OAuth Grant for Genesys Cloud](#Create_a_token_implicit_oauth_grant_for_genesys_cloud)
+* [Set up AWS Translate](#Set_up_aws_translate)
+* [Install and activate the Chat Translator on Genesys Cloud](#Install_and_activate_the_chat_translator_on_genesys_cloud)
+* [Host and run the NodeJS app server](#Host_and_run_the_nodejs_app_server)
+* [Test the solution](#Test_the_solution)
 
 ### Download the repository containing the project files
 
-1. Go to the [repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint) and clone it to your machine.
+1. Clone the [chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub").
 
-### Create a Token Implicit OAuth Grant for Genesys Cloud
-1. Login to your Genesys Cloud organization and create a new OAuth API (Implicit Grant(Browser)). [Create an OAuth Client.](https://help.mypurecloud.com/articles/create-an-oauth-client/)
-2. Modify [config.js](https://github.com/GenesysAppFoundry/chat-translator-blueprint/blob/main/docs/scripts/config.js) from the blueprint and enter the Client ID and region (i.e. mypurecloud.ie, mypurecloud.au, etc.) for Genesys Cloud.
+### Create a token implicit OAuth grant for Genesys Cloud
 
-### Setting up AWS Translate
-1. Create an IAM user for the application. [IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html)
-2. Add a policy to the IAM granting full access to the Translate service. [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html)
-3. Create an access key for the IAM user. [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
-4. Take note of the access key and secret.
-5. Create an .env file in the directory folder and provide values to the following variables: AWS_REGION, AWS_ACCESS_KEY_ID, and AWS_SECRET_ACCESS_KEY. You can also take the sample.env file and rename it to ".env" after filling in the required details.
+1. Log in to your Genesys Cloud organization and create a new OAuth client that uses the Token Implicit Grant (Browser) type. For more information, see [Create an OAuth client](https://help.mypurecloud.com/articles/?p=188023 "Opens the Create an OAuth client article") in the Genesys Cloud Resource Center.
+2. In your local blueprint repository, open the [config.js](https://github.com/GenesysAppFoundry/chat-translator-blueprint/blob/main/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
 
-### Install and activate the Chat Translator integration app on Genesys Cloud
+### Set up AWS Translate
 
-1. Login to your Genesys Cloud organization and add a new **Integration**.
-   ![Add Integration](images/add-integration.png "Add Integration")
-   
-2. Install the **Interaction Widget**.
+1. Create an IAM user for the application. For more information, see [IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html "Opens IAM users") in the AWS documentation.
+2. Add a policy to the IAM that grants full access to the AWS Translate service. For more information, see [Managing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html "Opens Managing IAM policies") in the AWS documentation.
+3. Create an access key for the IAM user. For more information, see [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html "Opens Managing access keys for IAM users") in the AWS documentation.
+4. Write down the access key and secret.
+5. Create an .env file in the directory folder and provide values for the following variables: `AWS_REGION`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY`.
+
+   :::primary
+   **Tip**: Start with the sample.env file for this blueprint and provide your org-specific details.
+   :::
+
+### Install and activate the Chat Translator in Genesys Cloud
+
+1. Log in to your Genesys Cloud organization and add an integration. For more information, see [Add an integration](https://help.mypurecloud.com/?p=135807 "Opens the Add an integration article") in the Genesys Cloud Resource Center.
+
+   ![Add integration](images/add-integration.png "Add integration")
+
+2. Install the **Interaction Widget** integration. For more information, see [Set up an Interaction Widget integration](https://help.mypurecloud.com/?p=229319 "Opens the Set up an Interaction Widget integration article") in the Genesys Cloud Resource Center.
+
    ![Install Interaction Widget](images/install-interaction-widget.png "Install Interaction Widget")
 
-3. **(Optional)** Use the Name box to give the app a different name.
-   ![Name Interaction Widget](images/name-interaction.png "Name Interaction Widget")
-   
-4. Click the **Configuration** tab. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, including the https: at the beginning of the URL.
-   
-   The pcConversationId URL parameter is used to determine the conversation interaction and pcLangTag is used to determine the agent's language in the Chat Translator solution.
+3. (Optional) Use the **Name** box to give the widget a meaningful name. For example, **Chat Translator**.
 
-   <pre class="language-nohighlight"><code class="language-nohighlight">https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;</code></pre>
+   ![Interaction Widget name](images/name-interaction.png "Interaction Widget name")
 
-   **(Optional)** Select a group for filtering user acces to the widget.
+4. Click the **Configuration** tab.
+5. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, beginning with `https:`.
 
-   **(Optional)** Select specific queues for widget access.
+   ```
+   https://localhost/?conversationid={{pcConversationId}}&language={{pcLangTag}}
+   ```
 
-   Select the ACD interaction types where you want the widget to be available for.
+   The `pcConversationId` parameter determines the conversation interaction. The `pcLangTag` parameter determines the agent's language in the Chat Translator solution.
 
-   ![Interaction Configuration](images/interaction-config.png "Interaction Configuration")
-   
-5. Go to **Advanced** Configuration and enter this in the text area:
+6. To limit access to specific groups of agents, in **Group Filtering**, select the groups that can use the widget.
+7. To limit access to specific queues, click **Select Queues** and select the queues that can use the widget.
+8. In the **Communication Type Filtering** box, type **chat**.  
 
-   ```json
+   ![Interaction configuration](images/interaction-config.png "Interaction configuration")
+
+9. Click **Advanced** and enter the following code in the text area. Then save and activate the integration.
+
+```{"language":"json"}
    {
      "lifecycle": {
        "ephemeral": false,
@@ -117,55 +129,45 @@ The Chat Translator integration has the following stages:
        "vector": "https://github.com/GenesysAppFoundry/chat-translator-blueprint/raw/main/blueprint/images/ear.svg"
      }
    }
-   ```
-
-6. **Save** and **Activate** the integration.
+```
 
 ### Host and run the NodeJS app server
-1. Check if you are running on the same Node version or higher. This sample runs on Node.js v14.15.4.
-   ```
-   node --version
-   ```
 
-   To install this version, use the **nvm** command with the specific Node.js version.
-   ```
-   nvm install 14.15.4
-   ```
+1. At a command line, verify that you are running Node.js v14.15.4 or later. Open a command line tool and type `node-v`.
+* To upgrade, type `nvm install 14.15.4`.
+* To install the latest version, type `npm install -g n latest`.
 
-   To install the latest version of Node.js, use this:
-   ```
-   npm install -g n latest
-   ```
-2. Open a terminal in the project directory and install the dependencies in the local node-modules folder.
-   ```
-   npm install
-   ```
-3. Run the server by entering this in the terminal
-   ```
-   node run-local.js
-   ```
+2. Switch to the directory where the files for your Chat Translator project are located and install the dependencies in the local node-modules folder. In the command line, type `npm install`.
+3. To run the server locally, in the command line type `node run-local.js`.
 
-### Testing the solution using Genesys Cloud Web Chats Developer Tool
+### Test the solution
 
-1. Create a Genesys web chat widget if you haven't already. [Create a widget for web chat](https://help.mypurecloud.com/?p=195772).
-   
+1. Create a Genesys web chat widget. For more information, see [Create a widget for web chat](https://help.mypurecloud.com/?p=195772 "Opens the Create a widget for web chat article") in the Genesys Cloud Resource Center.
+
    :::primary
-   **Important:** If you are going to use the Developer Tools to test, make sure to use either of the following widget deployment versions: Version 1.1, Third Party and	Version 2. To know more about widgets for web chat, visit this [link](https://help.mypurecloud.com/articles/about-widgets-for-web-chat/).
+   **Important**: If you will use the Genesys Cloud developer tools to test this solution, then make sure that under **Widget Type** you select **Version 2**, **Version 1.1**, or **Third Party**. For more information see [About widgets for web chat](https://help.mypurecloud.com/articles/?p=194115 "Opens the About widgets for web chat article") in the Genesys Cloud Resource Center.
    :::
 
-2. Go to Genesys Cloud [Developer Tools](https://developer.mypurecloud.com/developer-tools/#/webchat).
-3. Select your deployment and queue and initiate a chat interaction.
+2. Open the [Web Chat developer tool](https://developer.mypurecloud.com/developer-tools/#/webchat "Opens the Web Chat developer tool").
 
-Once the agent is offered/answers the incoming interaction, they should see the Chat Translator panel in one of the Agent tools section.
-![Chat Interaction](images/chat-interaction.png "Chat Interaction")
+   :::primary
+   **Important**: Make sure the Developer Center URL matches the region where your  Genesys Cloud organization is located. For more information, see the [Access the developer tools](https://developer.mypurecloud.com/gettingstarted/developer-tools-intro.html#accessTools "Goes to the Access the developer tools section on the Developer tools quick start page") section on the Developer tools quick start page.
+   :::
 
-Clicking it will open the Chat Translator. When the customer sends a message in a foreign language, the Chat Translator automatically detects the language and translates it to the agent's configured language in Genesys Cloud.
-![Translate Chat](images/chat-translate.png "Translate Chat")
+3. Go to the [Chat Configuration page in the Genesys Cloud Developer Center](https://developer.mypurecloud.com/developer-tools/#/webchat "Opens the Chat Configuration page in the Genesys Cloud Developer Center").
+4. Click **Populate Fields**.
+5. To start a chat as a customer, click **Start Chat**.
+6. To answer the chat as an agent, in your Genesys Cloud organization change your status to **On Queue** and then answer the incoming interaction.
+![Chat interaction](images/chat-interaction.png "Incoming chat interaction")
+7. To open the Chat Translator, click the **Chat Translator** button, which appears in the agent's toolbar.
+8. Practice sending and receiving chats in different languages. When you type a chat, the Chat Translator automatically translates it into the language that the customer is using.
+![Translated chat](images/chat-translate.png "Translated chat")
+9. To send a translated canned response, click **Open Canned Responses** and select a canned response.  
+![Translated canned response](images/translate-canned-response.png "Translated canned response")
 
-Clicking the **Open Canned Responses** above the message box allows an agent to send canned response translated to the customer's language.
-![Translate Canned Response](images/translate-canned-response.png "Translate Canned Response")
+## Additional resources
 
-## Additional Resources
-
-- [Genesys Cloud Developer Center](https://developer.mypurecloud.com/)
-- [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/)
+* [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/ Opens the Genesys Cloud Platform Client SDK page)
+* [Genesys AppFoundry](https://appfoundry.genesys.com/filter/genesyscloud “Opens the Genesys AppFoundry”)
+* [Amazon Translate](https://aws.amazon.com/translate/ “Opens Amazon Translate page”) in the AWS documentation
+* [Chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint “Opens the chat-translator-blueprint repository in GitHub")
