@@ -165,7 +165,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 
 ## Additional resources
 
-* [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/ Opens the Genesys Cloud Platform Client SDK page)
-* [Genesys AppFoundry](https://appfoundry.genesys.com/filter/genesyscloud “Opens the Genesys AppFoundry”)
-* [Amazon Translate](https://aws.amazon.com/translate/ “Opens Amazon Translate page”) in the AWS documentation
-* [Chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint “Opens the chat-translator-blueprint repository in GitHub")
+* [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/ "Opens the Genesys Cloud Platform Client SDK page")
+* [Genesys AppFoundry](https://appfoundry.genesys.com/filter/genesyscloud "Opens the Genesys AppFoundry")
+* [Amazon Translate](https://aws.amazon.com/translate/ "Opens Amazon Translate page") in the AWS documentation
+* [Chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub")
