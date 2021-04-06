@@ -58,12 +58,12 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 
 ### Download the repository containing the project files
 
-1. Clone the [chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub").
+1. Clone the [chat-translator-blueprint repository](https://github.com/GenesysCloudBlueprints/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub").
 
 ### Create a token implicit OAuth grant for Genesys Cloud
 
 1. Log in to your Genesys Cloud organization and create a new OAuth client that uses the Token Implicit Grant (Browser) type. For more information, see [Create an OAuth client](https://help.mypurecloud.com/articles/?p=188023 "Opens the Create an OAuth client article") in the Genesys Cloud Resource Center.
-2. In your local blueprint repository, open the [config.js](https://github.com/GenesysAppFoundry/chat-translator-blueprint/blob/main/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
+2. In your local blueprint repository, open the [config.js](https://github.com/GenesysCloudBlueprints/chat-translator-blueprint/blob/main/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
 
 ### Set up AWS Translate
 
@@ -116,13 +116,13 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
        }
      },
      "icon": {
-        "48x48": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear%2048x48.png",
-        "96x96": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear%2096x96.png",
-        "128x128": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear%20128x128.png",
-        "256x256": "https://raw.githubusercontent.com/GenesysAppFoundry/chat-translator-blueprint/main/docs/images/ear%20256x256.png"
+        "48x48": "https://raw.githubusercontent.com/GenesysCloudBlueprints/chat-translator-blueprint/main/blueprint/images/ear%2048x48.png",
+        "96x96": "https://raw.githubusercontent.com/GenesysCloudBlueprints/chat-translator-blueprint/main/blueprint/images/ear%2096x96.png",
+        "128x128": "https://raw.githubusercontent.com/GenesysCloudBlueprints/chat-translator-blueprint/main/blueprint/images/ear%20128x128.png",
+        "256x256": "https://raw.githubusercontent.com/GenesysCloudBlueprints/chat-translator-blueprint/main/blueprint/images/ear%20256x256.png"
     },
      "monochromicIcon": {
-       "vector": "https://github.com/GenesysAppFoundry/chat-translator-blueprint/raw/main/blueprint/images/ear.svg"
+       "vector": "https://raw.githubusercontent.com/GenesysCloudBlueprints/chat-translator-blueprint/main/blueprint/images/ear.svg"
      }
    }
 ```
@@ -166,4 +166,4 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 * [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/ "Opens the Genesys Cloud Platform Client SDK page")
 * [Genesys AppFoundry](https://appfoundry.genesys.com/filter/genesyscloud "Opens the Genesys AppFoundry")
 * [Amazon Translate](https://aws.amazon.com/translate/ "Opens Amazon Translate page") in the AWS documentation
-* [Chat-translator-blueprint repository](https://github.com/GenesysAppFoundry/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub")
+* [Chat-translator-blueprint repository](https://github.com/GenesysCloudBlueprints/chat-translator-blueprint "Opens the chat-translator-blueprint repository in GitHub")
