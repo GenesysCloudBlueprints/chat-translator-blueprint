@@ -140,6 +140,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
   * To upgrade, type `nvm install 14.15.4`.
   * To install the latest version, type `npm install -g n latest`.
 
+
 2. Switch to the directory where the files for your Chat Translator project are located and install the dependencies in the local node-modules folder. In the command line, type `npm install`.
 3. To run the server locally, in the command line type `node run-local.js`.
 

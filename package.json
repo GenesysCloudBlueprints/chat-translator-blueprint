@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GenesysAppFoundry/chat-translator-blueprint.git"
+    "url": "git+https://github.com/GenesysCloudBlueprints/chat-translator-blueprint.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GenesysAppFoundry/chat-translator-blueprint/issues"
+    "url": "https://github.com/GenesysCloudBlueprints/chat-translator-blueprint/issues"
   },
-  "homepage": "https://github.com/GenesysAppFoundry/chat-translator-blueprint#readme",
+  "homepage": "https://github.com/GenesysCloudBlueprints/chat-translator-blueprint#readme",
   "dependencies": {
     "@aws-sdk/client-translate": "^3.5.0",
     "dotenv": "^8.2.0",
