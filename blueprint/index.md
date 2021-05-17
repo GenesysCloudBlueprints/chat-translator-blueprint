@@ -98,7 +98,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 5. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, beginning with `https:`.
 
   ```
-   https://localhost/?conversationid={{pcConversation}}&language={{pcLangTag}}
+   https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;
   ```
 
    The `pcConversationId` parameter determines the conversation interaction. The `pcLangTag` parameter determines the agent's language in the Chat Translator solution.
