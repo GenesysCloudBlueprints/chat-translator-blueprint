@@ -66,6 +66,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 ### Create a token implicit OAuth grant for Genesys Cloud
 
 1. Log in to your Genesys Cloud organization and create a new OAuth client that uses the Token Implicit Grant (Browser) type. For more information, see [Create an OAuth client](https://help.mypurecloud.com/articles/?p=188023 "Opens the Create an OAuth client article") in the Genesys Cloud Resource Center.
+   1. Add `https://localhost/` as an Authorized redirect URI.
 2. In your local blueprint repository, open the [config.js](https://github.com/GenesysCloudBlueprints/chat-translator-blueprint/blob/main/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
 
 ### Set up AWS Translate
@@ -98,7 +99,7 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
 5. In the **Application URL** box, type the URL of the web application. Be sure to specify the full URL, beginning with `https:`.
 
   ```
-   https://localhost/?conversationid=&#123;&#123;pcConversationId&#125&#125;&language=&#123;&#123;pcLangTag&#125&#125;
+   https://localhost/?conversationid={{pcConversationId}}&language={{pcLangTag}}
   ```
 
    The `pcConversationId` parameter determines the conversation interaction. The `pcLangTag` parameter determines the agent's language in the Chat Translator solution.
@@ -165,6 +166,9 @@ This Genesys Developer Cloud Blueprint provides instructions for building a chat
   ![Chat interaction](images/chat-interaction.png "Incoming chat interaction")
 7. To open the Chat Translator, click the **Chat Translator** button, which appears in the agent's toolbar.
 8. Practice sending and receiving chats in different languages. When you type a chat, the Chat Translator automatically translates it into the language that the customer is using.
+  :::primary
+  **Important**: Make sure to type on the right side of the interaction for the Chat Translator app to successfully translate the agent's message.
+  :::
   ![Translated chat](images/chat-translate.png "Translated chat")
 9. To send a translated canned response, click **Open Canned Responses** and select a canned response.  
   ![Translated canned response](images/translate-canned-response.png "Translated canned response")
