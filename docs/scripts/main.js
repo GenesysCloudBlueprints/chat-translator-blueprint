@@ -39,8 +39,16 @@ let onMessage = (data) => {
 
             // Conversation values for cross reference
             let participant = currentConversation.participants.find(p => p.chats[0].id == senderId);
-            let name = participant.name;
-            let purpose = participant.purpose;
+            let name = '';
+            let purpose = '';
+
+            if(participant.name === null) {
+                name = 'BOT';
+                purpose = 'agent';
+            } else {
+                name = participant.name;
+                purpose = participant.purpose;
+            }
 
             // Wait for translate to finish before calling addChatMessage
             translate.translateText(message, genesysCloudLanguage, function(translatedData) {
