@@ -42,12 +42,12 @@ let onMessage = (data) => {
             let name = '';
             let purpose = '';
 
-            if(participant.name === null) {
-                name = 'BOT';
-                purpose = 'agent';
-            } else {
+            if(participant.name != null) {
                 name = participant.name;
                 purpose = participant.purpose;
+            } else {
+                name = 'BOT';
+                purpose = 'agent';
             }
 
             // Wait for translate to finish before calling addChatMessage
