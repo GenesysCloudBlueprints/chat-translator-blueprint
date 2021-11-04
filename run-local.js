@@ -3,6 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const { Translate } = require('@aws-sdk/client-translate');
 require('dotenv').config();
+const cors = require('cors');
 
 // Configure the AWS Translate client
 const translateService = new Translate({ 
@@ -19,6 +20,7 @@ const privateKey = fs.readFileSync('ssl/_localhost.key', 'utf8');
 const certificate = fs.readFileSync('ssl/_localhost.crt', 'utf8');
 const credentials = {key: privateKey, cert: certificate};
 
+app.use(cors());
 app.use(express.static('docs'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
